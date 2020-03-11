@@ -13,7 +13,9 @@ public class ContactUsTest extends TestHelpers {
         ContactUsPage contactUsPage = new ContactUsPage(driver);
         contactUsPage.submitContactUsForm("test@testy.com",
                 "C:\\Users\\Ali\\Desktop\\Test-file-upload.pdf", "Hello world");
+
         String actualMessage = contactUsPage.getStatusMessage();
-        verifyEquals("", "Your message has been successfully sent to our team.", actualMessage);
+        String expectedMessage = "Your message has been successfully sent to our team.";
+        verifyEquals("", expectedMessage, actualMessage);
     }
 }

@@ -68,16 +68,16 @@ public abstract class PageHelpers {
     }
 
 
-
+    //getting text and trimming for beginning and end space from line.
     public String getString(By byElement) {
         waitUntilVisibilityOfElementLocatedBy(byElement);
         return driver.findElement(byElement).getText().trim();
     }
 
     public List<String> getStringLists(By byElements){
-        //Collection List veriable = findElements class inheriting List interface.
+        //Collection List variable = findElements class inheriting List interface.
         List<WebElement> webElementList = driver.findElements(byElements);
-        //Cannot create object out of interface, Arraylist class implements List interface.
+        //Cannot create object out of interface, ArrayList class implements List interface.
         List<String> stringList = new ArrayList<>();
         for (WebElement element : webElementList) {
             stringList.add(element.getText().trim());

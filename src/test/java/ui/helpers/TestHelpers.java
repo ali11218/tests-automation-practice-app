@@ -21,11 +21,14 @@ public class TestHelpers {
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         driver.get("http://automationpractice.com/index.php");
+        //driver.manage().window().maximize();
     }
 
     @After
     public void tearDownDriver() {
-        driver.quit();
+        if(driver !=null) {
+            driver.quit();
+        }
     }
 
     @Rule

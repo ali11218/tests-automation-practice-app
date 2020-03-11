@@ -18,12 +18,12 @@ public class ContactUsPage extends PageHelpers {
         super(driver);
     }
 
-    public void submitContactUsForm(String emailAddress, String filePath, String writeMessage) {
+    public void submitContactUsForm(String emailAddress, String filePath, String writeYourMessage) {
         clickOnElement(contactUsLink);
         selectByVisibilityOfText(subjectHeading, chooseSubject);
         setField(emailField, emailAddress);
         fileUpload(attachFileField, filePath);
-        setField(messageField, writeMessage);
+        setField(messageField, writeYourMessage);
         clickOnElement(sendButton);
 
     }
