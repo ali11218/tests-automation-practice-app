@@ -2,12 +2,17 @@ package ui.helpers;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class PageHelpers {
-    private WebDriver driver;
+import java.util.ArrayList;
+import java.util.List;
+
+public abstract class PageHelpers {
+    public WebDriver driver;
 
     public PageHelpers(WebDriver driver) {
         this.driver = driver;
@@ -18,12 +23,19 @@ public class PageHelpers {
     }
 
     public void clickOnElement(By byElement) {
+        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(byElement));
         driver.findElement(byElement).click();
     }
 
-    public void setField(By byElement, CharSequence value) {
+    public void setField(By byElement, String value) {
+        waitUntilVisibilityOfElementLocatedBy(byElement);
         driver.findElement(byElement).clear();
         driver.findElement(byElement).sendKeys(value);
+    }
+    public void fileUpload(By byElement, String filePath){
+        new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(byElement));
+        driver.findElement(byElement).sendKeys(filePath);
+
     }
 
     public void setCheckBox(By byElement) {
@@ -32,16 +44,16 @@ public class PageHelpers {
         }
     }
 
-    public void mouseHover(By byElement, By bySubElement){
+    public void moveToChildElementAndClick(By byElement, By bySubElement){ //moved to element
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(byElement)).moveToElement(driver.findElement(bySubElement))
                 .click().build().perform();
     }
 
-    public boolean isElementDisplay(By byElemnent){
+    public boolean isElementDisplay(By byElement){
         boolean isFound;
         try {
-            waitUntilVisibilityOfElementLocatedBy(byElemnent);
+            waitUntilVisibilityOfElementLocatedBy(byElement);
             isFound = true;
         } catch (Exception ignore){
             isFound = false;
@@ -49,19 +61,31 @@ public class PageHelpers {
         return isFound;
     }
 
-    public void selectByVisibilityOfText(){
-        //todo
+    public void selectByVisibilityOfText(By byElement, String value){
+        new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(byElement));
+            Select select = new Select(driver.findElement(byElement));
+            select.selectByVisibleText(value);
     }
 
-    public void getText (By byElement) {
-        driver.findElement(byElement).getText();
+
+
+    public String getString(By byElement) {
+        waitUntilVisibilityOfElementLocatedBy(byElement);
+        return driver.findElement(byElement).getText().trim();
     }
 
-    public void getStringLists(){
-        //todo
+    public List<String> getStringLists(By byElements){
+        //Collection List veriable = findElements class inheriting List interface.
+        List<WebElement> webElementList = driver.findElements(byElements);
+        //Cannot create object out of interface, Arraylist class implements List interface.
+        List<String> stringList = new ArrayList<>();
+        for (WebElement element : webElementList) {
+            stringList.add(element.getText().trim());
+        }
+        return stringList;
     }
 
-    public void findyElement(){
+    public void findElement(){
         //todo
     }
 

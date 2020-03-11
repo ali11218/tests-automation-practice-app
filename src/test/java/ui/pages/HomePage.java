@@ -8,21 +8,26 @@ import static org.junit.Assert.fail;
 
 public class HomePage extends PageHelpers {
 
-    private WebDriver driver;
-
     public HomePage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
     }
-    private By womanTab = By.xpath("//*[@id='block_top_menu']/ul/li/a");
-    private By evinningDresses = By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/ul/li[2]/ul/li[2]");
+
+    //womenEveningDress
+    private By womanTab = By.xpath("//*[@id='block_top_menu']//a[contains(text(),'Women')]");
+    private By eveningDresses = By.xpath("//*[@id=\"block_top_menu\"]/ul/li[1]/ul/li[2]/ul/li[2]");
+                                            //*[@id='block_top_menu']//a[contains(text(),'Evening Dresses')]
     private By eveningDressVerify = By.className("cat-name");
 
     public void womenEveningDress(){
-        mouseHover(womanTab, evinningDresses);
-        if(!isElementDisplay(eveningDressVerify)){
-            fail("Evening dress verification failed");
-        }
+        moveToChildElementAndClick(womanTab, eveningDresses);
+//        if(!isElementDisplay(eveningDressVerify)){
+//            fail("Evening dress verification failed");
+//        }
 
+    }
+
+
+    public String geEveningDressTitleText() {
+        return getString(eveningDressVerify);
     }
 }
