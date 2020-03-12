@@ -13,6 +13,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.junit.Assert.fail;
+
 public abstract class PageHelpers {
     public WebDriver driver;
 
@@ -96,11 +98,20 @@ public abstract class PageHelpers {
         return empDetailsInfoMap;
     }
 
-    public void findElement() {
-        //todo
-    }
+//    public WebElement findByWebElement(By byElement) {
+//        WebElement webElement = null;
+//        try {
+//            waitUntilVisibilityOfElementLocatedBy(5, byElement);
+//            webElement = driver.findElement(byElement);
+//        } catch (Exception e) {
+//            captureScreenshot();
+//            fail("Failed locate element using By: " + byElement + "\nCheck Screenshot \n" + e.getStackTrace());
+//        }
+//        return webElement;
+//    }
 
-    public void findWebElement() {
+
+    public void findElement() {
         //todo
     }
 
