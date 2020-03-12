@@ -9,7 +9,9 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public abstract class PageHelpers {
     public WebDriver driver;
@@ -32,7 +34,8 @@ public abstract class PageHelpers {
         driver.findElement(byElement).clear();
         driver.findElement(byElement).sendKeys(value);
     }
-    public void fileUpload(By byElement, String filePath){
+
+    public void fileUpload(By byElement, String filePath) {
         new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(byElement));
         driver.findElement(byElement).sendKeys(filePath);
 
@@ -44,37 +47,37 @@ public abstract class PageHelpers {
         }
     }
 
-    public void moveToChildElementAndClick(By byElement, By bySubElement){ //moved to element
+    public void moveToChildElementAndClick(By byElement, By bySubElement) { //moved to element
         Actions actions = new Actions(driver);
         actions.moveToElement(driver.findElement(byElement)).moveToElement(driver.findElement(bySubElement))
                 .click().build().perform();
     }
 
-    public boolean isElementDisplay(By byElement){
+    public boolean isElementDisplay(By byElement) {
         boolean isFound;
         try {
             waitUntilVisibilityOfElementLocatedBy(byElement);
             isFound = true;
-        } catch (Exception ignore){
+        } catch (Exception ignore) {
             isFound = false;
         }
         return isFound;
     }
 
-    public void selectByVisibilityOfText(By byElement, String value){
+    public void selectByVisibilityOfText(By byElement, String value) {
         new WebDriverWait(driver, 5).until(ExpectedConditions.presenceOfElementLocated(byElement));
-            Select select = new Select(driver.findElement(byElement));
-            select.selectByVisibleText(value);
+        Select select = new Select(driver.findElement(byElement));
+        select.selectByVisibleText(value);
     }
 
 
-    //getting text and trimming for beginning and end space from line.
+    //getting text and trimming space from beginning and end of the line.
     public String getString(By byElement) {
         waitUntilVisibilityOfElementLocatedBy(byElement);
         return driver.findElement(byElement).getText().trim();
     }
 
-    public List<String> getStringLists(By byElements){
+    public List<String> getStringLists(By byElements) {
         //Collection List variable = findElements class inheriting List interface.
         List<WebElement> webElementList = driver.findElements(byElements);
         //Cannot create object out of interface, ArrayList class implements List interface.
@@ -85,11 +88,19 @@ public abstract class PageHelpers {
         return stringList;
     }
 
-    public void findElement(){
+    public Map<String, String> getTableMap(List<String> fieldName, List<String> fieldValue) {
+        Map<String, String> empDetailsInfoMap = new HashMap<>();
+        for (int i = 0; i < fieldName.size(); i++) {
+            empDetailsInfoMap.put(fieldName.get(i).trim(), fieldValue.get(i).trim());
+        }
+        return empDetailsInfoMap;
+    }
+
+    public void findElement() {
         //todo
     }
 
-    public void findWebElement(){
+    public void findWebElement() {
         //todo
     }
 

@@ -4,7 +4,6 @@ import org.junit.Test;
 import ui.helpers.TestHelpers;
 import ui.pages.AddToCartPage;
 import ui.pages.CheckoutPage;
-import ui.pages.ViewItemDetailsPage;
 
 public class CheckoutTest extends TestHelpers {
     @Test
@@ -16,7 +15,7 @@ public class CheckoutTest extends TestHelpers {
         checkoutPage.proceedToCheckOut();
 
         String actualMessage = checkoutPage.getVerificationText();
-        verifyEquals("", "Your shopping cart", actualMessage);
+        verifyEquals("Test failed: Expected element doesn't match with actual.", "Your shopping cart", actualMessage);
 
     }
 }

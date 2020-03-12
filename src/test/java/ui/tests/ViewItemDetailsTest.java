@@ -12,7 +12,7 @@ public class ViewItemDetailsTest extends TestHelpers {
 
         String actualMessage = viewItemDetailsPage.getItemDetails();
         String expectedMessage = "Faded Short Sleeve T-shirts";
-        verifyEquals("", expectedMessage, actualMessage);
+        verifyEquals("Test failed: Expected element doesn't match with actual.", expectedMessage, actualMessage);
 
 
     }

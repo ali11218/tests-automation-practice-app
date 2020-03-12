@@ -16,6 +16,6 @@ public class ContactUsTest extends TestHelpers {
 
         String actualMessage = contactUsPage.getStatusMessage();
         String expectedMessage = "Your message has been successfully sent to our team.";
-        verifyEquals("", expectedMessage, actualMessage);
+        verifyEquals("Test failed: Expected element doesn't match with actual.", expectedMessage, actualMessage);
     }
 }

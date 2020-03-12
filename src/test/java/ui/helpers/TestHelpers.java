@@ -10,6 +10,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 import static org.junit.Assert.assertEquals;
+import static ui.helpers.CommonHelper.loadWebDriver;
 
 public class TestHelpers {
 
@@ -17,11 +18,12 @@ public class TestHelpers {
 
     @Before
     public void setDriver() {
-        System.setProperty("webdriver.chrome.driver", "C:\\projects\\Lib\\chromedriver.exe");
-        driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+        driver = loadWebDriver();
+//        System.setProperty("webdriver.chrome.driver", "C:\\projects\\Lib\\chromedriver.exe");
+//        driver = new ChromeDriver();
+//        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         driver.get("http://automationpractice.com/index.php");
-        //driver.manage().window().maximize();
+        //        //driver.manage().window().maximize();
     }
 
     @After
