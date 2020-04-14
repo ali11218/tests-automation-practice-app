@@ -1,0 +1,5 @@
+Hello world,
+My name is Test!
+
+mvn clean test -Pui-regression -DDRIVER_TYPE=chrome -DENVERONMENT=test
+mvn surefire-report:report-only
