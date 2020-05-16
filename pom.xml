@@ -23,7 +23,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>3.8.1</version>
+            <version>3.8.0</version>
         </dependency>
 
     </dependencies>
@@ -38,7 +38,7 @@
                         <version>2.17</version>
                         <configuration>
                             <includes>
-                                <include>sanity/EmployeePortalSanityTest.java</include>
+                                <include>sanity/*</include>
                             </includes>
                             <environmentVariables>
                                 <ENVIRONMENT>${ENVIRONMENT}</ENVIRONMENT>
@@ -73,6 +73,7 @@
     </profiles>
 
     <build>
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -89,6 +90,7 @@
                 <version>3.0.0-M4</version>
             </plugin>
         </plugins>
+
     </build>
 
 </project>

@@ -4,8 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ui.helpers.PageHelpers;
 
-import static org.junit.Assert.fail;
-
 public class AddToCartPage extends PageHelpers {
 
     //verifyTheShoppingCart_SDET_264
@@ -24,6 +22,7 @@ public class AddToCartPage extends PageHelpers {
 //            fail("Item added message did not display");
 //        }
     }
+
 
     public String getConfirmationMessage(){
        return getString(confirmationMessage);

@@ -21,7 +21,7 @@ public class TestHelpers {
         driver = loadWebDriver();
 //        System.setProperty("webdriver.chrome.driver", "C:\\projects\\Lib\\chromedriver.exe");
 //        driver = new ChromeDriver();
-//        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
+//        driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);SECONDS
         driver.get("http://automationpractice.com/index.php");
         //        //driver.manage().window().maximize();
     }
@@ -41,7 +41,22 @@ public class TestHelpers {
             assertEquals(message, expected, actual);
         } catch (AssertionError e) {
             errorCollector.addError(e);
+        }
+    }
 
+    public void verifyTrue(String message, boolean actual) {
+        try {
+            assertEquals(message, actual);
+        } catch (AssertionError e) {
+            errorCollector.addError(e);
+        }
+    }
+
+    public void verifyFalse(String message, boolean actual) {
+        try {
+            assertEquals(message, actual);
+        } catch (AssertionError e) {
+            errorCollector.addError(e);
         }
     }
 

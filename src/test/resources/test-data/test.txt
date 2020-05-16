@@ -1,5 +1,15 @@
 Hello world,
 My name is Test!
 
-mvn clean test -Pui-regression -DDRIVER_TYPE=chrome -DENVERONMENT=test
 mvn surefire-report:report-only
+
+mvn clean test -Pui-regression -DDRIVER_TYPE=chrome -DENVERONMENT=test
+mvn = maven command
+clean = clean up the existing run target directory
+test = running maven tests under /src/java/tests directories. if found any run-able
+-P = maven profile (in pom.xml)
+ui-regression = profile ID
+-D = runtime environment, if you set an env, example, DRIVER_TYPE.
+so the answer: mvn clean test -PprofileName/regressionTestSuiteName
+If you have System environment variable to pass. then
+mvn clean test -Pregression-products -DDRIVER_TYPE=chrome
