@@ -27,7 +27,7 @@ public abstract class PageHelpers {
     }
 
     public void clickOnElement(By byElement) {
-        new WebDriverWait(driver, 5).until(ExpectedConditions.elementToBeClickable(byElement));
+        new WebDriverWait(driver, 3).until(ExpectedConditions.elementToBeClickable(byElement));
         driver.findElement(byElement).click();
     }
 
@@ -83,7 +83,7 @@ public abstract class PageHelpers {
         //Collection List variable = findElements class inheriting List interface.
         List<WebElement> webElementList = driver.findElements(byElements);
         //Cannot create object out of interface, ArrayList class implements List interface.
-        List<String> stringList = new ArrayList<>();
+        List<String> stringList = new ArrayList<String>();
         for (WebElement element : webElementList) {
             stringList.add(element.getText().trim());
         }

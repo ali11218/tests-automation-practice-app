@@ -8,9 +8,10 @@ import static org.junit.Assert.assertEquals;
 public class SanityTest extends TestHelpers {
 
     @Test
-    public void womenEveningDress() {
+    public void womenEveningDressAndVerify() {
         HomePage homePage = new HomePage(driver);
         homePage.womenEveningDress();
+
         String actualTitle = homePage.getEveningDressTitleText();
         assertEquals("EVENING DRESSES", actualTitle);
 

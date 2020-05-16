@@ -2,6 +2,7 @@ package ui.helpers;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.lang3.SystemUtils;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -17,11 +18,12 @@ import java.util.ResourceBundle;
 import java.util.concurrent.TimeUnit;
 
 import static junit.framework.TestCase.fail;
+import static org.openqa.selenium.remote.BrowserType.CHROME;
 
 public class CommonHelper {
 
     private static WebDriver driver;
-
+    private static String DEFAULT_BROWSER = "chrome";
 
     /**
      * Load WebDriver based on the user driver type: chrome, ie, firefox.
@@ -32,7 +34,12 @@ public class CommonHelper {
     public static WebDriver loadWebDriver() {
 
         String driverType = System.getenv("DRIVER_TYPE"); //Get driver type from user environment
-
+        if (driverType == null) {
+            driverType = DEFAULT_BROWSER;
+            System.out.println("\n!!!!! No driver type set during run time. Using the instance variable 'default browser' " + DEFAULT_BROWSER + " !!!!!\n");
+        } else {
+            System.out.println("\n Driver was set up during run time in the environment.\n");
+        }
         //Load driver based on user driver type
         if ("chrome".equalsIgnoreCase(driverType)) {
 
@@ -44,6 +51,7 @@ public class CommonHelper {
             ChromeOptions chromeOptions = new ChromeOptions();
             chromeOptions.addArguments("disable-infobars");
             chromeOptions.setExperimentalOption("prefs", prefMap);
+            chromeOptions.setPageLoadStrategy(PageLoadStrategy.NONE);
             //TODO add more chrome setting options
 
             driver = new ChromeDriver(chromeOptions);
@@ -65,6 +73,10 @@ public class CommonHelper {
             WebDriverManager.iedriver().setup();
             //TODO add IE setting options
             driver = new InternetExplorerDriver();
+        }
+
+        if (driver == null) {
+            fail("Failed to load WebDriver");
         }
 
         driver.manage().timeouts().pageLoadTimeout(30, TimeUnit.SECONDS);
